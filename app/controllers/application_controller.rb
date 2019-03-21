@@ -32,6 +32,7 @@ class ApplicationController < ActionController::API
         if decoded_token
             parent_id = decoded_token[0]["parent_id"]
             @parent = Parent.find_by(id: parent_id)
+        end
     end
 
     def logged_in?
