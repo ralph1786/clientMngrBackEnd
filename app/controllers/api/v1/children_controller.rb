@@ -36,6 +36,6 @@ class Api::V1::ChildrenController < ApplicationController
     private
 
     def child_params
-        params.require(:child).permit(:name, :image, :age, :address, :allergies, :balance, :provider_id, :parent_id)
+        params.require(:child).permit(:name, :image, :age, :address, :allergies, :balance, :provider_id, :parent_id, forms: [])
     end
 end
