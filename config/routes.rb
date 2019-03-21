@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       resources :parents
 
       post "/login", to: "auth#create"
+      post "/parent_login", to: "parent_auth#create"
       get "/dashboard", to: "providers#dashboard"
+      get "/parent_dashboard", to: "parents#parent_dashboard"
     end
   end
 

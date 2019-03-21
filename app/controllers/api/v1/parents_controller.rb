@@ -5,10 +5,18 @@ class Api::V1::ParentsController < ApplicationController
         render json: @parent
     end
 
+    def parent_dashboard
+        render json: {parent: ParentSerializer.new(current_parent)}, status: :accepted
+    end
 
     def create
-       @parent = Parent.create(parent_params)
-       render json: @parent
+        @parent = Parent.create(parent_params)
+        if @parent.valid?
+            @token = encode_token(parent_id: @parent.id)
+            render json: {parent: ParentSerializer.new(@parent)}, status: :created
+        else
+            render json: {error: "Provider was not created"}, status: :not_acceptable
+        end
     end
 
     private

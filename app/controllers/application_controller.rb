@@ -28,6 +28,12 @@ class ApplicationController < ActionController::API
         end
     end
 
+    def current_parent
+        if decoded_token
+            parent_id = decoded_token[0]["parent_id"]
+            @parent = Parent.find_by(id: parent_id)
+    end
+
     def logged_in?
         !!current_provider
     end
