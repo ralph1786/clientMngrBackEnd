@@ -13,8 +13,9 @@ class Api::V1::ChildrenController < ApplicationController
     def create
         # @child = Child.create(child_params)
         # render json: @child
-        @child = Child.new(child_params)
 
+        @child = Child.new(child_params)
+       
         if @child.save 
             render json: @child, status: :created
         else
@@ -25,6 +26,7 @@ class Api::V1::ChildrenController < ApplicationController
     def update
         @child = Child.find(params[:id])
         @child.update(child_params)
+        render json: @child
     end
 
     def destroy
@@ -36,6 +38,6 @@ class Api::V1::ChildrenController < ApplicationController
     private
 
     def child_params
-        params.require(:child).permit(:name, :image, :age, :address, :allergies, :balance, :provider_id, :parent_id, forms: [])
+        params.permit(:name, :image, :age, :address, :allergies, :balance, :provider_id, :parent_id, forms: [])
     end
 end
