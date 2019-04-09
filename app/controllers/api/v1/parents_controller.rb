@@ -13,7 +13,7 @@ class Api::V1::ParentsController < ApplicationController
         @parent = Parent.create(parent_params)
         if @parent.valid?
             @token = encode_token(parent_id: @parent.id)
-            render json: {parent: ParentSerializer.new(@parent)}, status: :created
+            render json: {parent: ParentSerializer.new(@parent), jwt: @token}, status: :created
         else
             render json: {error: "Provider was not created"}, status: :not_acceptable
         end

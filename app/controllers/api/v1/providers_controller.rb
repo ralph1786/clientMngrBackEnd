@@ -14,7 +14,7 @@ class Api::V1::ProvidersController < ApplicationController
         @provider = Provider.create(provider_params)
         if @provider.valid?
             @token = encode_token(provider_id: @provider.id)
-            render json: {provider: ProviderSerializer.new(@provider)}, status: :created
+            render json: {provider: ProviderSerializer.new(@provider), jwt: @token}, status: :created
         else
             render json: {error: "Provider was not created"}, status: :not_acceptable
         end
