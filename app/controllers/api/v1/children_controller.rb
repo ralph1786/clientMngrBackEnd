@@ -1,4 +1,5 @@
 class Api::V1::ChildrenController < ApplicationController
+    # include ActionController::Serialization
     # before_action :authorized
     def index 
         @children = Child.all
@@ -6,8 +7,9 @@ class Api::V1::ChildrenController < ApplicationController
     end
 
     def show
-        @child = Child.find(params[:id])
+        @child = Child.with_attached_forms.find(params[:id])
         render json: @child
+        # render json: rails_blob_path(@child.forms, disposition: "attachment", only_path: true)
     end
 
     def create
