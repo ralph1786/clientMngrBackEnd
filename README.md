@@ -33,8 +33,4 @@ Use rails -api flag and set database to Postgres
    1. Has many Children
    2. Has many Providers through Children
    
-
-## Built With
-
-* ActionCable- To create separate channels for each user.
   
